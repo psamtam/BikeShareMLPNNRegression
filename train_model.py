@@ -1,16 +1,12 @@
 from ucimlrepo import fetch_ucirepo 
 
-import pandas as pd
 import numpy as np
-
-from matplotlib import pyplot as plt
-import seaborn as sns
 
 import tensorflow as tf
 from tensorflow import keras
 from keras.models import Sequential
-from keras.layers import Dense, Input, Dropout
-from sklearn.model_selection import KFold, train_test_split
+from keras.layers import Dense, Input, Dropout, Normalization
+from sklearn.model_selection import train_test_split
 
 
 if __name__ == "__main__":
@@ -32,6 +28,7 @@ if __name__ == "__main__":
   def my_model():
     model = Sequential()
     model.add(Input(X.shape[1]))
+    model.add(Normalization())
     model.add(Dense(64, activation="relu"))
     model.add(Dropout(0.2))
     model.add(Dense(128, activation="relu"))
